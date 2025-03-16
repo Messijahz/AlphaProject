@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "_CleanLayout";
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="center-screen">
+    <div class="surface create-account-form">
+
+        <h1 class="center-content">Login</h1>
+
+        <button class="btn btn-gray btn-google">
+            <img class="google-icon" src="/images/google-logotype-icon.svg">
+            <span>Login with Google</span>
+        </button>
+
+        <div class="center-content divider">
+            <span class="small-text">OR</span>
+        </div>
+
+        <form class="form-container">
+
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-input" placeholder="Your email address">
+
+
+            <label for="password" class="form-label">Password</label>
+            <div class="input-wrapper">
+                <input type="password" id="password" class="form-input" placeholder="Enter your password">
+            </div>
+
+
+            <div class="checkbox-container items-apart">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" checked>
+                    <label for="terms">Remember Me</label>
+                </div>
+                <a href="#"><span>Forgot Password?</span></a>
+            </div>
+
+
+            <button type="submit" class="btn btn-blue">Log In</button>
+        </form>
+
+        <div class="center-content">
+            <p>Don't have an account? <a href="#">Sign Up</a></p>
+        </div>
+
+
+    </div>
+</div>

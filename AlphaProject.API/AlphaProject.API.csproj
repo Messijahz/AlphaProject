@@ -17,8 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Extensions\" />
-    <Folder Include="Views\Shared\Partials\" />
-    <Folder Include="wwwroot\images\" />
+    <Folder Include="Views\Shared\Partials\Sections\" />
   </ItemGroup>
 
   <ItemGroup>
