@@ -144,9 +144,12 @@ html, body {
 .surface {
   padding: 2rem;
   border-radius: 16px;
-  height: 280px;
   background-color: var(--surface-color);
   box-shadow: 0 4px 4px 3px rgba(196, 196, 196, 0.1);
+}
+
+.surface-card {
+  height: 280px;
 }
 
 .portal {

@@ -136,6 +136,10 @@ html, body {
     box-shadow: 0 4px 4px 3px rgba(196, 196, 196, 0.1);
 }
 
+.surface-card {
+    height: 280px;
+}
+
 .portal {
     display: grid;
     grid-template-columns: minmax(50px, 270px) 1fr;
