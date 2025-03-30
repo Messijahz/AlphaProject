@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <Folder Include="Extensions\" />
-    <Folder Include="Views\Shared\Partials\Sections\" />
   </ItemGroup>
 
   <ItemGroup>

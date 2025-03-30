@@ -10,4 +10,10 @@ public class AdminController : Controller
     {
         return View();
     }
+
+    [Route("projects")]
+    public IActionResult Projects()
+    {
+        return View();
+    }
 }

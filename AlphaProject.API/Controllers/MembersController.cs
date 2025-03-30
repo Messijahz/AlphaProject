@@ -2,11 +2,11 @@
 
 namespace AlphaProject.API.Controllers;
 
-[Route("projects")]
-public class ProjectsController : Controller
+[Route("members")]
+public class MembersController : Controller
 {
     [Route("")]
-    public IActionResult Projects()
+    public IActionResult Members()
     {
         return View();
     }
@@ -15,7 +15,7 @@ public class ProjectsController : Controller
     {
         return View();
     }
-    [HttpGet("create")]
+    [HttpGet("create/{id}")]
     public IActionResult Create()
     {
         return View();
