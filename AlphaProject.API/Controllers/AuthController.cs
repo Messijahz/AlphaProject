@@ -1,12 +1,22 @@
 ﻿using AlphaProject.API.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaProject.API.Controllers;
 
 public class AuthController : Controller
 {
+    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly UserManager<IdentityUser> _userManager;
+
+    public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+    {
+        _signInManager = signInManager;
+        _userManager = userManager;
+    }
+
     public IActionResult Login()
     {
         return View();
@@ -30,11 +40,11 @@ public class AuthController : Controller
         return RedirectToAction("Login", "Auth");
     }
 
-    [HttpGet("signout")]
+    [HttpPost("signout")]
     [Authorize]
-    public new async Task<IActionResult> SignOut()
+    public async Task<IActionResult> LogOut()
     {
-        await HttpContext.SignOutAsync();
+        await _signInManager.SignOutAsync();
         return RedirectToAction("Login", "Auth");
     }
 }
