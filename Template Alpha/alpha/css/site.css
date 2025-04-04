@@ -597,6 +597,37 @@ input:checked + .slider:before {
   gap: 1.5rem;
 }
 
+.input-wrapper {
+  position: relative;
+}
+
+form .field-group {
+  position: relative;
+}
+
+form .field-validation-error {
+  position: absolute;
+  z-index: 1;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.8em;
+  color: var(--red);
+  background-color: var(--red-10);
+  border-radius: 14px;
+  padding: 0.6rem 1rem;
+  text-align: right;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  pointer-events: none;
+}
+
+  form .field-validation-error::before {
+      content: '\f071';
+      font-family: "Font Awesome 6 Free";
+      font-size: 1.1em;
+      font-weight: var(--font-black);
+  }
 
 
 /* sections */
@@ -1211,4 +1242,20 @@ input:checked + .slider:before {
 
 .modal-submit:hover {
   background: #0056b3;
+}
+
+.remove-user-btn {
+  background: none;
+  border: none;
+  color: var(--gray-700);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.remove-user-btn:hover {
+  color: var(--red); /* Röd vid hover om du vill ha en "ta bort"-signal */
 }

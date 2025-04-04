@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaProject.API.Controllers;
 
+[Authorize]
 [Route("admin")]
 public class AdminController : Controller
 {

@@ -2,31 +2,38 @@
 
 namespace AlphaProject.API.Models;
 
-public class SignUpFormModel
+public class SignUpFormModel : IValidatableObject
 {
-    [Required(ErrorMessage = "Full name is required.")]
+    [Required(ErrorMessage = "Required")]
     public string FullName { get; set; } = null!;
 
 
     [DataType(DataType.EmailAddress)]
-    [Required(ErrorMessage = "You must enter your email address.")]
-    [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
-", ErrorMessage = "Invalid email format.")]
+    [Required(ErrorMessage = "Required")]
+    [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "Invalid email format.")]
     public string Email { get; set; } = null!;
 
 
     [DataType(DataType.Password)]
-    [Required(ErrorMessage = "You must enter a password.")]
+    [Required(ErrorMessage = "Required")]
     [RegularExpression(@"^(?=.* [a - ö])(?=.* [A - Ö])(?=.*\d)(?=.* [\W_]).{8,}$", ErrorMessage = "Password must contain at least 1 uppercase, 1 lowercase, 1 number, 1 special character and be at least 8 characters long.")]
     public string Password { get; set; } = null!;
 
 
     [DataType(DataType.Password)]
-    [Required(ErrorMessage = "You must confirm your password.")]
+    [Required(ErrorMessage = "Required")]
     [Compare(nameof(Password), ErrorMessage = "Passwords do not match.")]
     public string ConfirmPassword { get; set; } = null!;
 
 
     [Required(ErrorMessage = "You must accept the Terms & Conditions")]
     public bool AcceptTerms { get; set; }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if (!AcceptTerms)
+        {
+            yield return new ValidationResult("You must accept the Terms & Conditions", new[] { nameof(AcceptTerms) });
+        }
+    }
 }

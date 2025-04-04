@@ -19,9 +19,20 @@ public class AuthController : Controller
         return View(formData);
     }
 
+    [HttpPost("register")]
+    public async Task<IActionResult> Register(SignUpFormModel formData)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(formData);
+        }
+
+        return RedirectToAction("Login", "Auth");
+    }
+
     [HttpGet("signout")]
     [Authorize]
-    public async Task<IActionResult> SignOut()
+    public new async Task<IActionResult> SignOut()
     {
         await HttpContext.SignOutAsync();
         return RedirectToAction("Login", "Auth");

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model AlphaProject.API.Models.SignInFormModel
+
+@{
     Layout = "_CleanLayout";
     ViewData["Title"] = "Login";
 }
@@ -9,10 +11,7 @@
 
         <h1 class="center-content">Login</h1>
 
-        <button class="btn btn-gray btn-google">
-            <img class="google-icon" src="/images/google-logotype-icon.svg">
-            <span>Login with Google</span>
-        </button>
+        @await Html.PartialAsync("Partials/Components/_GoogleButton", new GoogleButtonViewModel { ButtonText = "Login with Google" })
 
         <div class="center-content divider">
             <span class="small-text">OR</span>
@@ -43,7 +42,7 @@
         </form>
 
         <div class="center-content">
-            <p>Don't have an account? <a href="#">Sign Up</a></p>
+            <p>Don't have an account? <a asp-controller="Auth" asp-action="Register">Sign Up</a></p>
         </div>
 
 
