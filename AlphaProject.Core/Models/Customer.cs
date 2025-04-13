@@ -1,7 +1,10 @@
-﻿namespace AlphaProject.Core.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AlphaProject.Core.Models;
 
 public class Customer
 {
+    [Key]
     public Guid CustomerId { get; set; }
     public string CustomerName { get; set; } = string.Empty;
     public string ContactPerson { get; set; } = string.Empty;

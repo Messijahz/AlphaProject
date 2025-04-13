@@ -1,7 +1,10 @@
-﻿namespace AlphaProject.Core.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AlphaProject.Core.Models;
 
 public class User
 {
+    [Key]
     public Guid UserId { get; set; }
     public string Username { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;

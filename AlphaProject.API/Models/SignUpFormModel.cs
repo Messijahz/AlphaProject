@@ -16,7 +16,7 @@ public class SignUpFormModel : IValidatableObject
 
     [DataType(DataType.Password)]
     [Required(ErrorMessage = "Required")]
-    [RegularExpression(@"^(?=.* [a - ö])(?=.* [A - Ö])(?=.*\d)(?=.* [\W_]).{8,}$", ErrorMessage = "Password must contain at least 1 uppercase, 1 lowercase, 1 number, 1 special character and be at least 8 characters long.")]
+    [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$", ErrorMessage = "Password must contain at least 1 uppercase, 1 lowercase, 1 number, 1 special character and be at least 8 characters long.")]
     public string Password { get; set; } = null!;
 
 
@@ -26,7 +26,6 @@ public class SignUpFormModel : IValidatableObject
     public string ConfirmPassword { get; set; } = null!;
 
 
-    [Required(ErrorMessage = "You must accept the Terms & Conditions")]
     public bool AcceptTerms { get; set; }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

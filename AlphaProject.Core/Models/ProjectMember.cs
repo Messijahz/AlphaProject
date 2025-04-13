@@ -1,7 +1,10 @@
-﻿namespace AlphaProject.Core.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AlphaProject.Core.Models;
 
 public class ProjectMember
 {
+    [Key]
     public Guid MemberId { get; set; }
     public Guid ProjectId { get; set; }
     public Project Project { get; set; }

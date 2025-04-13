@@ -1,7 +1,10 @@
-﻿namespace AlphaProject.Core.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AlphaProject.Core.Models;
 
 public class Notification
 {
+    [Key]
     public Guid NotificationId { get; set; }
     public Guid UserId { get; set; }
     public User User { get; set; }

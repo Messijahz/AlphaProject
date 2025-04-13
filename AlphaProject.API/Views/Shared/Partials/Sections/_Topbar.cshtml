@@ -1,4 +1,5 @@
-﻿<div class="topbar-content">
+﻿@using Microsoft.AspNetCore.Mvc.ViewComponents
+<div class="topbar-content">
 
     <div class="search-container">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -9,15 +10,13 @@
         <a href="#">
             <i class="fa-regular fa-bell icons-size-22"></i>
         </a>
-        <a href="#">
-            <i class="fa-solid fa-gear icons-size-22"></i>
-        </a>
+
+        @await Component.InvokeAsync("UserMenu")
+
         <div class="divider-vertical"></div>
-        <a href="#">
-            <div class="avatar">
-                <img class="avatar-size-40" src="/images/profile-icon-small-1.svg" alt="Profile Picture">
-            </div>
-        </a>
+
+        @await Component.InvokeAsync("UserAvatar")
+
     </div>
 
 </div>

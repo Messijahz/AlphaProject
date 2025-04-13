@@ -12,5 +12,5 @@ public class SignInFormModel
     [DataType(DataType.Password)]
     [Required(ErrorMessage = "Required")]
     [Display(Name = "Password", Prompt = "Enter your password")]
-    public string ConfirmPassword { get; set; } = null!;
+    public string Password { get; set; } = null!;
 }
