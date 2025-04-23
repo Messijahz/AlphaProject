@@ -1,0 +1,41 @@
+﻿@model AlphaProject.API.ViewModels.UserMenuViewModel
+
+<div class="custom-dropdown-container">
+    <i class="fa-solid fa-gear icons-size-22" onclick="toggleDropdown(this)"></i>
+    <ul class="custom-dropdown-menu settings-dropdown">
+        <li>
+            <a href="#" class="gray-background">
+                <div class="custom-dropdown-item">
+                    <img src="@Model.ProfileImageUrl" class="avatar" alt="User profile">
+                    <span>@Model.FullName</span>
+                </div>
+            </a>
+        </li>
+
+        <li class="dark-mode-toggle">
+            <a href="#">
+                <div class="toggle-container">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Dark Mode</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </a>
+        </li>
+
+        <div class="divider-horizontal"></div>
+
+        <li>
+            <form asp-action="LogOut" asp-controller="Auth" method="post">
+                    <div class="custom-dropdown-item">
+                        <button type="submit" class="clickable-item">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+            </form>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,8 @@
+﻿@model AlphaProject.API.ViewModels.GoogleButtonViewModel
+
+<form asp-controller="Auth" asp-action="ExternalSignIn" method="post">
+    <button type="submit" name="provider" value="Google" class="btn btn-gray btn-google">
+        <img class="google-icon" src="~/images/google-logotype-icon.svg" asp-append-version="true" />
+        <span>@Model.ButtonText</span>
+    </button>
+</form>

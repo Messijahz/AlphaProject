@@ -1,0 +1,74 @@
+﻿@using AlphaProject.Core.Models
+@model AlphaProject.Core.Models.Project
+
+
+
+<div class="projects-container">
+    <div class="wrapper-project-card">
+        <div class="card-header">
+            <div class="card-logo-info">
+                <img src="images/project-image1.svg" alt="Project Logo" class="card-logo">
+                <div class="card-info">
+                    <h6 class="card-title">@Model.Name</h6>
+                    <p class="card-company">@Model.Customer.CustomerName</p>
+                </div>
+            </div>
+
+            <div class="custom-dropdown-container">
+                <i class="fa-solid fa-ellipsis" onclick="toggleDropdown(this)"></i>
+                <ul class="custom-dropdown-menu">
+                    <li>
+                        <a href="/projects/edit/@Model.ProjectId">
+                            <div class="custom-dropdown-item">
+                                <i class="fa-solid fa-pen"></i>
+                                <span>Edit</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <div class="custom-dropdown-item">
+                                <i class="fa-solid fa-user-plus"></i>
+                                <span>Add Member</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <div class="divider-horizontal"></div>
+
+                    <li>
+                        <form asp-action="Delete" asp-controller="Projects" asp-route-id="@Model.ProjectId" method="post" onsubmit="return confirm('Are you sure you want to delete this project?');">
+                            <button type="submit" class="custom-dropdown-item delete">
+                                <i class="fa-solid fa-trash"></i>
+                                <span>Delete Project</span>
+                            </button>
+                        </form>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-description-container">
+            <p class="card-description">
+                @Html.Raw(Model.Description)
+            </p>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-deadline">
+                <i class="fa-regular fa-clock"></i>
+                <span>@(Model.EndDate.HasValue ? (Model.EndDate.Value - DateTime.Now).Days + " days left" : "No deadline")</span>
+            </div>
+            <div class="card-avatars">
+                
+                @foreach (var member in Model.ProjectMembers.Take(3))
+                {
+                    <img src="images/profile-icon-small-1.svg" class="avatar" title="@member.FirstName @member.LastName">
+                }
+                
+            </div>
+        </div>
+    </div>
+</div>

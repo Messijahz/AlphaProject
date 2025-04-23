@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewComponents
+<div class="topbar-content">
+
+    <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search anything..." class="search-input">
+    </div>
+
+    <div class="icons-wrapper">
+        <a href="#">
+            <i class="fa-regular fa-bell icons-size-22"></i>
+        </a>
+
+        @await Component.InvokeAsync("UserMenu")
+
+        <div class="divider-vertical"></div>
+
+        @await Component.InvokeAsync("UserAvatar")
+
+    </div>
+
+</div>

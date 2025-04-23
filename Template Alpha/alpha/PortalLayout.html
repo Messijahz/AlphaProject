@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/site.css">
+  <title>Alpha Portal</title>
+</head>
+<body>
+
+
+<div class="portal">
+  <div class="logotype">
+    <a class="alpha-logotype" href="#">
+      <img src="images/alpha-logotype-icon.svg" alt="Alpha Logo">
+      <span>alpha</span>
+    </a>
+  </div>
+
+
+  <div class="side">
+    <nav class="nav-links">
+      <a class="nav-link" href="#">
+        <i class="fa-duotone fa-solid fa-briefcase"></i>
+        <span>Projects</span>
+      </a>
+      <a class="nav-link active" href="#">
+        <i class="fa-duotone fa-solid fa-user-group"></i>
+        <span>Team Members</span>
+      </a>
+    </nav>
+  </div>
+
+  
+  <div class="top">
+    <div class="topbar-content">
+
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search anything..." class="search-input">
+        </div>
+
+        <div class="icons-wrapper">
+
+          <div class="custom-dropdown-container">
+            <i class="fa-regular fa-bell icons-size-22" onclick="toggleDropdown(this)"></i>
+            <ul class="custom-dropdown-menu"> 
+                <li class="notification-container">
+                    <div class="notification-header">
+                        <h5>Notifications</h5>
+                        <span class="notification-count">1</span>
+                    </div>
+                
+                    <div class="notification-item">
+                        <div class="notification-content">
+                            <img src="images/project-image1.svg" alt="ASP.NET Logo" class="card-logo">
+                            <div class="notification-text">
+                                <p class="notification-title">ASP.NET Web App added</p>
+                                <p class="notification-time">1 min ago</p>
+                            </div>
+                        </div>
+                        <button class="notification-close">&times;</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+          <div class="custom-dropdown-container">
+            <i class="fa-solid fa-gear icons-size-22" onclick="toggleDropdown(this)"></i>
+            <ul class="custom-dropdown-menu settings-dropdown">
+                <li>
+                    <a href="#" class="gray-background">
+                        <div class="custom-dropdown-item">
+                            <img src="images/profile-icon-small-1.svg" class="avatar">
+                            <span>Andreas Laine</span>
+                        </div>
+                    </a>
+                </li>
+        
+                <li class="dark-mode-toggle">
+                  <a href="#">
+                      <div class="toggle-container">
+                          <i class="fa-solid fa-gear"></i>
+                          <span>Dark Mode</span>
+                      </div>
+                      <label class="switch">
+                          <input type="checkbox" id="dark-mode-checkbox">
+                          <span class="slider round"></span>
+                      </label>
+                  </a>
+              </li>
+        
+                <div class="divider-horizontal"></div>
+        
+                <li>
+                    <a href="#" class="logout">
+                        <div class="custom-dropdown-item">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Logout</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+          </div>
+      
+
+            <div class="divider-vertical"></div>
+            
+            <div class="avatar">
+                <img class="avatar-size-40" src="images/profile-icon-small-1.svg" alt="Profile Picture">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+  
+  <div class="main">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1>Projects</h1>
+      <button type="submit" class="btn btn-blue-small">+ Add Project</button>
+    </div>
+    <div class="listed-projects">
+      <a href="#">ALL [0]</a>
+      <a href="#">STARTED [8]</a>
+      <a href="#">COMPLETED [0]</a>
+    </div>
+    <div class="divider"></div>
+
+
+
+    <div class="projects-container">
+      <div class="wrapper-project-card">
+          <div class="card-header">
+              <div class="card-logo-info">
+                  <img src="images/project-image1.svg" alt="Project Logo" class="card-logo">
+                  <div class="card-info">
+                      <h6 class="card-title">App Development</h6>
+                      <p class="card-company">Slack Technologies, Inc.</p>
+                  </div>
+              </div>
+  
+              <div class="custom-dropdown-container">
+                  <i class="fa-solid fa-ellipsis" onclick="toggleDropdown(this)"></i>
+                  <ul class="custom-dropdown-menu">
+                    <li>
+                      <a href="#">
+                        <div class="custom-dropdown-item">
+                          <i class="fa-solid fa-pen"></i>
+                          <span>Edit</span>
+                        </div>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="#">
+                        <div class="custom-dropdown-item">
+                          <i class="fa-solid fa-user-plus"></i>
+                          <span>Add Member</span>
+                        </div>
+                      </a>
+                    </li>
+                    
+                    <div class="divider-horizontal"></div>
+                    
+                    <li>
+                      <a href="#" class="delete">
+                        <div class="custom-dropdown-item">
+                          <i class="fa-solid fa-trash"></i>
+                          <span>Delete Project</span>
+                        </div>
+                      </a>
+                    </li>
+                    
+                  </ul>
+              </div>
+          </div>
+  
+          <p class="card-description">
+              Create a mobile application on iOS and Android devices.
+          </p>
+  
+          <div class="card-footer">
+              <div class="card-deadline">
+                  <i class="fa-regular fa-clock"></i>
+                  <span>5 days left</span>
+              </div>
+              <div class="card-avatars">
+                  <img src="images/profile-icon-small-1.svg" class="avatar">
+                  <img src="images/profile-icon-small-3.svg" class="avatar">
+                  <img src="images/profile-icon-small-6.svg" class="avatar">
+              </div>
+          </div>
+      </div>
+  </div>
+  
+</div>
+    
+  <script src="site.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

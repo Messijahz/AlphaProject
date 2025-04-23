@@ -1,0 +1,7 @@
+﻿@model AlphaProject.API.ViewModels.ProjectMemberViewModel
+
+<span class="modal-member" data-user-id="@Model.Id">
+    <img src="@Model.ProfileImageUrl" alt="@Model.FullName" />
+    <span class="username">@Model.FullName</span>
+    <button class="remove-user-btn" aria-label="Remove user">✖</button>
+</span>

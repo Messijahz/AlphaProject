@@ -1,0 +1,39 @@
+﻿@model ProjectListViewModel
+
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h2>Projects</h2>
+
+    @await Html.PartialAsync("Partials/Components/_AddProjectButton")
+    @await Html.PartialAsync("Partials/Modals/_AddProjectModal", new AlphaProject.API.ViewModels.ProjectFormModel())
+
+
+</div>
+<div class="listed-projects">
+    <a href="/projects">
+        ALL [@Model.AllProjects.Count]
+    </a>
+
+    <a href="/projects?statusId=55555555-5555-5555-5555-555555555555">
+        STARTED [@Model.AllProjects.Count(p => p.StatusId == Guid.Parse("55555555-5555-5555-5555-555555555555"))]
+    </a>
+
+    <a href="/projects?statusId=66666666-6666-6666-6666-666666666666">
+        COMPLETED [@Model.AllProjects.Count(p => p.StatusId == Guid.Parse("66666666-6666-6666-6666-666666666666"))]
+    </a>
+</div>
+
+
+
+<div class="divider"></div>
+
+
+<div class="projects-container">
+    @foreach (var project in Model.FilteredProjects)
+    {
+        @await Html.PartialAsync("Partials/Components/_ProjectCard", project)
+    }
+</div>

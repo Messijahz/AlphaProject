@@ -1,0 +1,63 @@
+﻿@model AlphaProject.API.Models.SignInFormModel
+
+@{
+    Layout = "_CleanLayout";
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="center-screen">
+    <div class="surface create-account-form">
+
+        <h1 class="center-content">Login</h1>
+
+        @await Html.PartialAsync("Partials/Components/_GoogleButton", new GoogleButtonViewModel { ButtonText = "Login with Google" })
+
+        <div class="center-content divider">
+            <span class="small-text">OR</span>
+        </div>
+
+        <form asp-controller="Auth" asp-action="Login" method="post" class="form-container">
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+            <div class="field-group">
+                <label for="Email" class="form-label">Email</label>
+                    <div class="input-wrapper">
+                        <input asp-for="Email" type="email" id="email" class="form-input" placeholder="Your email address">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+            </div>
+
+            <div class="field-group">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-wrapper">
+                    <input asp-for="Password" type="password" id="password" class="form-input" placeholder="Enter your password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="checkbox-container items-apart">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="rememberMe" name="rememberMe" checked>
+                    <label for="rememberMe">Remember Me</label>
+                </div>
+                <a href="#"><span>Forgot Password?</span></a>
+            </div>
+
+
+            <button type="submit" class="btn btn-blue">Log In</button>
+        </form>
+
+        <div class="center-content">
+            <p>Don't have an account? <a asp-controller="Auth" asp-action="Register">Sign Up</a></p>
+        </div>
+
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/form-validation.js"></script>
+}

@@ -1,0 +1,72 @@
+﻿@model ProjectFormModel
+
+
+        <form asp-action="Create" asp-controller="Projects" method="post" enctype="multipart/form-data" class="modal-form">
+
+
+            <label asp-for="ProjectName" class="modal-label"></label>
+            <input asp-for="ProjectName" class="modal-input" placeholder="Project Name">
+            <span asp-validation-for="ProjectName" class="field-error"></span>
+
+            <label asp-for="ClientName" class="modal-label"></label>
+            <input asp-for="ClientName" class="modal-input" placeholder="Client Name">
+            <span asp-validation-for="ClientName" class="field-error"></span>
+
+            <label asp-for="Description" class="modal-label"></label>
+            <div class="modal-texteditor">
+                <div id="editor-container">
+                    <div id="editor"></div>
+                </div>
+                <input asp-for="Description" type="hidden">
+            </div>
+            <span asp-validation-for="Description" class="field-error"></span>
+
+
+
+            <div class="modal-date-container">
+                <div class="modal-date">
+                    <label asp-for="StartDate" class="modal-label"></label>
+                    <div class="modal-date-wrapper">
+                        <input asp-for="StartDate" class="modal-input datepicker" placeholder="Select a date">
+                        <i class="fa-solid fa-calendar modal-calendar-icon"></i>
+                    </div>
+                </div>
+                <div class="modal-date">
+                    <label asp-for="EndDate" class="modal-label"></label>
+                    <div class="modal-date-wrapper">
+                        <input asp-for="EndDate" class="modal-input datepicker" placeholder="Select a date">
+                        <i class="fa-solid fa-calendar modal-calendar-icon"></i>
+                    </div>
+                </div>
+                <span asp-validation-for="StartDate" class="field-error"></span>
+                <span asp-validation-for="EndDate" class="field-error"></span>
+            </div>
+            
+
+
+            <label asp-for="Members" class="modal-label"></label>
+            <div class="modal-members-container">
+                <div class="modal-members">
+
+                    @foreach (var member in Model.AvailableMembers)
+                    {
+                        @await Html.PartialAsync("Partials/Components/_ProjectMember", member)
+                    }
+
+                </div>
+                <div class="modal-search">
+                    <img src="images/search-icon.svg" alt="Search">
+                </div>
+            </div>
+
+
+            <label asp-for="Budget" class="modal-label"></label>
+            <div class="modal-input-wrapper">
+                <img src="images/dollar-icon.svg" class="modal-input-icon" alt="Dollar">
+                <input asp-for="Budget" type="number" class="modal-input modal-budget-left-padding" placeholder="0">
+                <span asp-validation-for="Budget" class="field-error"></span>
+            </div>
+
+            <button type="submit" class="modal-submit">Create</button>
+
+        </form>
