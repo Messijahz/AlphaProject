@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlphaProject.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250422095831_AddProjectSupport")]
-    partial class AddProjectSupport
+    [Migration("20250424125220_InitClean")]
+    partial class InitClean
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -186,6 +186,9 @@ namespace AlphaProject.Infrastructure.Migrations
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -343,13 +346,8 @@ namespace AlphaProject.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            StatusId = new Guid("44444444-4444-4444-4444-444444444444"),
-                            StatusName = "New"
-                        },
-                        new
-                        {
                             StatusId = new Guid("55555555-5555-5555-5555-555555555555"),
-                            StatusName = "In Progress"
+                            StatusName = "Started"
                         },
                         new
                         {

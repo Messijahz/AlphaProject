@@ -13,4 +13,5 @@ public interface IProjectRepository
     Task<IEnumerable<Project>> GetAllAsync();
     Task<Project?> GetByIdAsync(Guid id);
     Task SoftDeleteAsync(Guid id);
+    Task UpdateAsync(Project project);
 }

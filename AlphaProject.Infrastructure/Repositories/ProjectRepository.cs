@@ -29,7 +29,6 @@ public class ProjectRepository : IProjectRepository
     {
         return await _context.Projects
         .Where(p => !p.IsDeleted)
-        .Include(p => p.Customer)
         .Include(p => p.ProjectMembers)
         .ToListAsync();
     }
@@ -37,6 +36,12 @@ public class ProjectRepository : IProjectRepository
     public async Task<Project?> GetByIdAsync(Guid id)
     {
         return await _context.Projects.FirstOrDefaultAsync(p => p.ProjectId == id);
+    }
+
+    public async Task UpdateAsync(Project project)
+    {
+        _context.Projects.Update(project);
+        await _context.SaveChangesAsync();
     }
 
     public async Task SoftDeleteAsync(Guid id)

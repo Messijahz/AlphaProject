@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlphaProject.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250422200132_AddIsDeletedToProjects")]
-    partial class AddIsDeletedToProjects
+    [Migration("20250424161226_AddClientNameToProjects")]
+    partial class AddClientNameToProjects
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -102,36 +102,6 @@ namespace AlphaProject.Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("AlphaProject.Core.Models.Customer", b =>
-                {
-                    b.Property<Guid>("CustomerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ContactPerson")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomerName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CustomerId");
-
-                    b.ToTable("Customers");
-                });
-
             modelBuilder.Entity("AlphaProject.Core.Models.Notification", b =>
                 {
                     b.Property<Guid>("NotificationId")
@@ -176,8 +146,9 @@ namespace AlphaProject.Infrastructure.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -193,9 +164,6 @@ namespace AlphaProject.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ProjectManagerId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -208,10 +176,6 @@ namespace AlphaProject.Infrastructure.Migrations
                     b.HasKey("ProjectId");
 
                     b.HasIndex("AppUserId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("ProjectManagerId");
 
                     b.HasIndex("StatusId");
 
@@ -346,13 +310,8 @@ namespace AlphaProject.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            StatusId = new Guid("44444444-4444-4444-4444-444444444444"),
-                            StatusName = "New"
-                        },
-                        new
-                        {
                             StatusId = new Guid("55555555-5555-5555-5555-555555555555"),
-                            StatusName = "In Progress"
+                            StatusName = "Started"
                         },
                         new
                         {
@@ -548,18 +507,6 @@ namespace AlphaProject.Infrastructure.Migrations
                         .WithMany("Projects")
                         .HasForeignKey("AppUserId");
 
-                    b.HasOne("AlphaProject.Core.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AlphaProject.Core.Models.ProjectManager", "ProjectManager")
-                        .WithMany()
-                        .HasForeignKey("ProjectManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AlphaProject.Core.Models.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
@@ -569,10 +516,6 @@ namespace AlphaProject.Infrastructure.Migrations
                     b.HasOne("AlphaProject.Core.Models.User", null)
                         .WithMany("Projects")
                         .HasForeignKey("UserId");
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("ProjectManager");
 
                     b.Navigation("Status");
                 });

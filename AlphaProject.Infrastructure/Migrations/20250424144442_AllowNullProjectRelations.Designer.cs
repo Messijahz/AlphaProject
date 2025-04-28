@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlphaProject.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250406111627_InitialCleanMigration")]
-    partial class InitialCleanMigration
+    [Migration("20250424144442_AllowNullProjectRelations")]
+    partial class AllowNullProjectRelations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,6 +75,9 @@ namespace AlphaProject.Infrastructure.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ProfileImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -173,7 +176,7 @@ namespace AlphaProject.Infrastructure.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("CustomerId")
+                    b.Property<Guid?>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -183,11 +186,14 @@ namespace AlphaProject.Infrastructure.Migrations
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ProjectManagerId")
+                    b.Property<Guid?>("ProjectManagerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("StartDate")
@@ -340,13 +346,8 @@ namespace AlphaProject.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            StatusId = new Guid("44444444-4444-4444-4444-444444444444"),
-                            StatusName = "New"
-                        },
-                        new
-                        {
                             StatusId = new Guid("55555555-5555-5555-5555-555555555555"),
-                            StatusName = "In Progress"
+                            StatusName = "Started"
                         },
                         new
                         {
@@ -545,14 +546,12 @@ namespace AlphaProject.Infrastructure.Migrations
                     b.HasOne("AlphaProject.Core.Models.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("AlphaProject.Core.Models.ProjectManager", "ProjectManager")
                         .WithMany()
                         .HasForeignKey("ProjectManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("AlphaProject.Core.Models.Status", "Status")
                         .WithMany()

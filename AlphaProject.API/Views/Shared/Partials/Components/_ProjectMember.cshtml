@@ -1,7 +1,10 @@
 ﻿@model ProjectMemberViewModel
 
 <span class="modal-member" data-user-id="@Model.Id">
-    <img src="@Model.ProfileImageUrl" alt="User" />
+    <img src="@(string.IsNullOrEmpty(Model.ProfileImageUrl) ? "/images/profile-icon-small-1.svg" : Model.ProfileImageUrl)" alt="User" />
     <span class="username">@Model.FullName</span>
-    <button class="remove-user-btn" aria-label="Remove user">✖</button>
+    <button class="remove-user-btn" aria-label="Remove user" onclick="removeUser(this)">✖</button>
 </span>
+
+
+

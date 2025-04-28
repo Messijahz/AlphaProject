@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AlphaProject.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCleanMigration : Migration
+    public partial class InitClean : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,6 +35,7 @@ namespace AlphaProject.Infrastructure.Migrations
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProfileImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -251,6 +252,7 @@ namespace AlphaProject.Infrastructure.Migrations
                     CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProjectManagerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     StatusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
@@ -366,8 +368,7 @@ namespace AlphaProject.Infrastructure.Migrations
                 columns: new[] { "StatusId", "StatusName" },
                 values: new object[,]
                 {
-                    { new Guid("44444444-4444-4444-4444-444444444444"), "New" },
-                    { new Guid("55555555-5555-5555-5555-555555555555"), "In Progress" },
+                    { new Guid("55555555-5555-5555-5555-555555555555"), "Started" },
                     { new Guid("66666666-6666-6666-6666-666666666666"), "Completed" }
                 });
 

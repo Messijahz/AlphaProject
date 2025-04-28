@@ -4,6 +4,10 @@ namespace AlphaProject.API.ViewModels;
 
 public class ProjectFormModel
 {
+    [Required(ErrorMessage = "Project Id is missing.")]
+    public Guid ProjectId { get; set; }
+
+
     [Display(Name = "Project Image")]
     public IFormFile? ProjectImg { get; set; }
 
@@ -24,13 +28,13 @@ public class ProjectFormModel
     [Required(ErrorMessage = "Start Date is required.")]
     [Display(Name = "Start Date")]
     [DataType(DataType.Date)]
-    public DateTime StartDate { get; set; }
+    public DateTime StartDate { get; set; } = DateTime.Today;
 
 
     [Required(ErrorMessage = "End Date is required.")]
     [Display(Name = "End Date")]
     [DataType(DataType.Date)]
-    public DateTime EndDate { get; set; }
+    public DateTime EndDate { get; set; } = DateTime.Today;
 
 
     [Display(Name = "Members")]
