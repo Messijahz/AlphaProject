@@ -288,6 +288,11 @@ a {
     background-color: var(--btn-blue-background-color);
     margin: 1.4rem 0rem 0rem 0rem;
     height: 48px;
+    width: 100%;
+}
+
+.account-footer {
+    margin-top: 3.5rem;
 }
 
         .btn-blue:hover
