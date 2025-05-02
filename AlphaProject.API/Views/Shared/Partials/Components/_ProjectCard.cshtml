@@ -1,4 +1,5 @@
 ﻿@using AlphaProject.Core.Models
+@using System.Text.Json
 @model AlphaProject.Core.Models.Project
 
 
@@ -18,7 +19,14 @@
                 <i class="fa-solid fa-ellipsis" onclick="toggleDropdown(this)"></i>
                 <ul class="custom-dropdown-menu">
                     <li>
-                        <a href="/projects/edit/@Model.ProjectId">
+                        @{
+                            var safeName = JsonSerializer.Serialize(Model.Name);
+                            var safeClientName = JsonSerializer.Serialize(Model.ClientName);
+                            var safeDescription = JsonSerializer.Serialize(Model.Description ?? "");
+                        }
+
+                        <a href="javascript:void(0);"
+                           onclick="loadEditProjectModal('@Model.ProjectId')">
                             <div class="custom-dropdown-item">
                                 <i class="fa-solid fa-pen"></i>
                                 <span>Edit</span>

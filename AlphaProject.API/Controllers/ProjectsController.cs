@@ -163,7 +163,7 @@ public class ProjectsController : Controller
             }
         };
 
-        return PartialView("Partials/Modals/_EditProjectModal", form);
+        return PartialView("Partials/Forms/_EditProjectForm", form);
     }
 
     [HttpPost("edit/{id}")]
@@ -172,13 +172,7 @@ public class ProjectsController : Controller
     {
         if (!ModelState.IsValid)
         {
-            form.AvailableMembers = new List<ProjectMemberViewModel>
-        {
-            new ProjectMemberViewModel { Id = Guid.NewGuid().ToString(), FullName = "Theresé Lidbom" },
-            new ProjectMemberViewModel { Id = Guid.NewGuid().ToString(), FullName = "Hans-Mattin Lassei" }
-        };
-
-            return PartialView("Partials/Modals/_EditProjectModal", form);
+            return RedirectToAction("Index", "Projects");
         }
 
         var existingProject = await _projectService.GetByIdAsync(id);
@@ -204,8 +198,9 @@ public class ProjectsController : Controller
 
         await _projectService.UpdateProjectAsync(existingProject);
 
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Projects");
     }
+
 
 
     [HttpPost("delete/{id}")]

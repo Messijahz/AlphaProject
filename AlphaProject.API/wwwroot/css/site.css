@@ -286,8 +286,7 @@ a {
     color: var(--btn-blue-text-color);
     border: var(--btn--blue-border-color);
     background-color: var(--btn-blue-background-color);
-    margin: 1.4rem 0rem 3.4rem;
-    width: 400px;
+    margin: 1.4rem 0rem 0rem 0rem;
     height: 48px;
 }
 
@@ -472,7 +471,6 @@ input:checked + .slider {
 
 .form-input {
     width: 100%;
-    max-width: 400px;
     padding: .9rem;
     border: 1px solid var(--border-color);
     border-radius: 16px;
@@ -586,11 +584,18 @@ input:checked + .slider {
 
 .input-wrapper {
     position: relative;
+
+}
+
+.editor-form {
+    margin-bottom: 1.7rem;
 }
 
 form .field-group {
     position: relative;
 }
+
+
 
 form .input-validation-error {
 
@@ -648,6 +653,28 @@ form .field-validation-error {
     margin-top: 0.2rem;
 }
 
+#addProjectModal .field-error {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+    border-radius: 0.4rem;
+    padding: 0.25rem 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    z-index: 10;
+}
+
+    #addProjectModal .field-error::before {
+        content: '\f071';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+    }
 
 
 /* sections */
@@ -875,9 +902,17 @@ form .field-validation-error {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    max-height: 7rem;
+    overflow: hidden;
 }
 
 .card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
     color: var(--dark-400);
     margin: 1rem 0;
     font-size: 0.95rem;
@@ -1117,6 +1152,7 @@ form .field-validation-error {
 .modal-input-icon {
     position: absolute;
     left: 14px;
+    top: 18px;
     width: 18px;
     height: 18px;
     pointer-events: none;
@@ -1145,6 +1181,7 @@ form .field-validation-error {
     overflow: hidden;
     display: flex;
     flex-direction: column-reverse;
+    margin-bottom: 27px;
 }
 
 .ql-toolbar {
@@ -1160,6 +1197,16 @@ form .field-validation-error {
 }
 
 #editor {
+    min-height: 120px;
+    font-family: var(--font-standard);
+}
+
+#editor-add {
+    min-height: 120px;
+    font-family: var(--font-standard);
+}
+
+#editor-edit {
     min-height: 120px;
     font-family: var(--font-standard);
 }
@@ -1217,6 +1264,7 @@ form .field-validation-error {
     background: var(--white-100);
     border-radius: 8px;
     padding: 8px;
+    margin-bottom: 1.7rem;
 }
 
 .modal-members {

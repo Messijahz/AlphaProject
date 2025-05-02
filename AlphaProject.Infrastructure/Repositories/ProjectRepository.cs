@@ -29,7 +29,7 @@ public class ProjectRepository : IProjectRepository
     {
         return await _context.Projects
         .Where(p => !p.IsDeleted)
-        .Include(p => p.ProjectMembers)
+        .Include(p => p.ProjectMembers.Where(pm => !pm.IsDeleted))
         .ToListAsync();
     }
 

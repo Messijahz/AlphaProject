@@ -18,8 +18,7 @@
         </div>
 
         <form asp-controller="Auth" asp-action="Login" method="post" class="form-container">
-            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-
+            
             <div class="field-group">
                 <label for="Email" class="form-label">Email</label>
                     <div class="input-wrapper">

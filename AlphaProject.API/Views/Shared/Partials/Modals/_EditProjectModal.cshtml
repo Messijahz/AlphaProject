@@ -1,6 +1,6 @@
 ﻿@model ProjectFormModel
 
-<div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="addProjectModalLabel" aria-hidden="true">
+<div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
@@ -8,9 +8,8 @@
 
 
                 <div class="modal-header">
-                    <h3 class="modal-title" id="addProjectModalLabel">Edit Project</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    </button>
+                    <h3 class="modal-title" id="editProjectModalLabel">Edit Project</h3>
+                    <button type="button" class="btn-close" onclick="closeEditProjectModal()" aria-label="Close"></button>
                 </div>
 
 
@@ -19,11 +18,12 @@
                 </div>
 
                 <div class="modal-body">
+
                     @await Html.PartialAsync("Partials/Forms/_EditProjectForm", Model)
+
                 </div>
 
             </div>
-
         </div>
     </div>
 </div>
