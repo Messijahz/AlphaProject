@@ -16,7 +16,7 @@ public class Project
     public decimal Budget { get; set; }
 
     public Guid StatusId { get; set; }
-    public Status Status { get; set; }
+    public Status? Status { get; set; }
 
     public ICollection<ProjectMember> ProjectMembers { get; set; } = new List<ProjectMember>();
     public bool IsDeleted { get; set; } = false;

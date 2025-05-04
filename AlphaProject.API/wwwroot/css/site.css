@@ -753,6 +753,7 @@ form .field-validation-error {
 .custom-dropdown-container {
     position: relative;
     display: inline-block;
+    cursor: pointer;
 }
 
 .custom-dropdown-menu {

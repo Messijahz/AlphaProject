@@ -1,10 +1,10 @@
-﻿// --- TA BORT MEDLEM ---
+﻿// --- REMOVE MEMBER ---
 function removeUser(button) {
     const member = button.closest('.modal-member');
     if (member) member.remove();
 }
 
-// --- VAL AV MEDLEMMAR ---
+// --- HANDLE MEMBER SELECTION ---
 let selectedMembers = [];
 
 function handleMemberSelection() {
@@ -35,7 +35,7 @@ function handleMemberSelection() {
     });
 }
 
-// --- VISA MODAL VID VALIDERINGSFEL ---
+// --- SHOW MODAL IF THERE IS A VALIDATION ERROR ---
 function showValidationModal() {
     const error = document.querySelector('.field-validation-error');
     if (!error) return;
@@ -47,7 +47,7 @@ function showValidationModal() {
     else if (editModal) new bootstrap.Modal(editModal).show();
 }
 
-// --- INITIERA QUILL ---
+// --- INITIALIZE QUILL TEXT EDITOR ---
 function initQuill(editorId, hiddenInputId, globalKey) {
     const editor = document.getElementById(editorId);
     const hiddenInput = document.getElementById(hiddenInputId);
@@ -75,7 +75,7 @@ function initQuill(editorId, hiddenInputId, globalKey) {
     window[globalKey] = quill;
 }
 
-// --- INITIERA FLATPICKR ---
+// --- INITIALIZE FLATPICKR CALENDAR ---
 function initFlatpickr() {
     flatpickr(".datepicker", {
         dateFormat: "Y-m-d",
@@ -88,7 +88,7 @@ function initFlatpickr() {
     });
 }
 
-// --- LADDA IN EDIT-PROJEKT MODAL ---
+// --- LOAD EDIT PROJECT MODAL ---
 function loadEditProjectModal(projectId) {
     fetch(`/projects/edit/${projectId}`)
         .then(res => res.text())
@@ -106,21 +106,21 @@ function loadEditProjectModal(projectId) {
 
             new bootstrap.Modal(modal).show();
 
-            // Init funktioner efter laddning
+            // Initialize functions after content is loaded
             initQuill("editor-edit", "DescriptionEdit", "editQuill");
             initFlatpickr();
             handleMemberSelection();
         });
 }
 
-// --- PÅ SIDLADDNING ---
+// --- ON PAGE LOAD ---
 document.addEventListener('DOMContentLoaded', () => {
     initFlatpickr();
     initQuill("editor-add", "DescriptionAdd", "addQuill");
     handleMemberSelection();
     showValidationModal();
 
-    // Koppla hidden quill value innan submit
+    // Set Quill value to hidden input on form submit
     const addForm = document.querySelector('#addProjectModal form');
     if (addForm) {
         addForm.addEventListener('submit', () => {

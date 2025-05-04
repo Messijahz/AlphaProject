@@ -21,12 +21,20 @@ public class ProjectsController : Controller
         _userManager = userManager;
     }
 
+    private List<ProjectMemberViewModel> GetTestMember()
+    {
+        return new List<ProjectMemberViewModel>()
+        {
+            new ProjectMemberViewModel {Id = Guid.NewGuid().ToString(), FullName = "Andreas Laine" },
+            new ProjectMemberViewModel { Id = Guid.NewGuid().ToString(), FullName = "Kristoffer Test" },
+        };
+    }
+
 
     [HttpGet("{status?}")]
     public async Task<IActionResult> Index(string? status)
     {
         var allProjects = await _projectService.GetAllAsync();
-
         var filteredProjects = allProjects;
 
         if (!string.IsNullOrEmpty(status))
@@ -39,6 +47,10 @@ public class ProjectsController : Controller
             {
                 filteredProjects = allProjects.Where(p => p.StatusId == Guid.Parse("66666666-6666-6666-6666-666666666666"));
             }
+            else
+            {
+                filteredProjects = allProjects;
+            }
         }
 
         var viewModel = new ProjectListViewModel
@@ -47,11 +59,7 @@ public class ProjectsController : Controller
             FilteredProjects = filteredProjects.ToList(),
             AddProjectForm = new ProjectFormModel
             {
-                AvailableMembers = new List<ProjectMemberViewModel>
-                {
-                    new ProjectMemberViewModel { Id = Guid.NewGuid().ToString(), FullName = "Theresé Lidbom" },
-                    new ProjectMemberViewModel { Id = Guid.NewGuid().ToString(), FullName = "Hans-Mattin Lassei" },
-                }
+                AvailableMembers = GetTestMember()
             }
 
         };
@@ -75,11 +83,7 @@ public class ProjectsController : Controller
     {
         var form = new ProjectFormModel
         {
-            AvailableMembers = new List<ProjectMemberViewModel> 
-            {
-                new ProjectMemberViewModel { Id = Guid.NewGuid().ToString(), FullName = "Theresé Lidbom"},
-                new ProjectMemberViewModel { Id = Guid.NewGuid().ToString(), FullName = "Hans-Mattin Lassei"},
-            }
+            AvailableMembers = GetTestMember()
         };
         return PartialView("Partials/Modals/_AddProjectModal", form);
     }
@@ -92,11 +96,7 @@ public class ProjectsController : Controller
     {
         if (!ModelState.IsValid)
         {
-            form.AvailableMembers = new List<ProjectMemberViewModel>
-            {
-                new ProjectMemberViewModel { Id = Guid.NewGuid().ToString(), FullName = "Theresé Lidbom"},
-                new ProjectMemberViewModel { Id = Guid.NewGuid().ToString(), FullName = "Hans-Mattin Lassei"},
-            };
+            form.AvailableMembers = GetTestMember();
 
             var allProjects = await _projectService.GetAllAsync();
 
@@ -156,11 +156,7 @@ public class ProjectsController : Controller
             EndDate = project.EndDate ?? DateTime.MinValue,
             Budget = project.Budget,
             Members = project.ProjectMembers.Select(pm => pm.MemberId).ToList(),
-            AvailableMembers = new List<ProjectMemberViewModel>
-            {
-                new ProjectMemberViewModel { Id = Guid.NewGuid().ToString(), FullName = "Theresé Lidbom"},
-                new ProjectMemberViewModel { Id = Guid.NewGuid().ToString(), FullName = "Hans-Mattin Lassei"},
-            }
+            AvailableMembers = GetTestMember()
         };
 
         return PartialView("Partials/Forms/_EditProjectForm", form);
