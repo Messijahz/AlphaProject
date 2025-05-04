@@ -32,7 +32,7 @@ public class ProjectsController : Controller
 
 
     [HttpGet("{status?}")]
-    public async Task<IActionResult> Index(string? status)
+    public async Task<IActionResult> Index(string? status, string? query)
     {
         var allProjects = await _projectService.GetAllAsync();
         var filteredProjects = allProjects;
@@ -41,16 +41,21 @@ public class ProjectsController : Controller
         {
             if (status.ToLower() == "started")
             {
-                filteredProjects = allProjects.Where(p => p.StatusId == Guid.Parse("55555555-5555-5555-5555-555555555555"));
+                filteredProjects = filteredProjects.Where(p => p.StatusId == Guid.Parse("55555555-5555-5555-5555-555555555555"));
             }
             else if (status.ToLower() == "completed")
             {
-                filteredProjects = allProjects.Where(p => p.StatusId == Guid.Parse("66666666-6666-6666-6666-666666666666"));
+                filteredProjects = filteredProjects.Where(p => p.StatusId == Guid.Parse("66666666-6666-6666-6666-666666666666"));
             }
-            else
-            {
-                filteredProjects = allProjects;
-            }
+        }
+
+        if (!string.IsNullOrWhiteSpace(query))
+        {
+            filteredProjects = filteredProjects.Where(p =>
+                (!string.IsNullOrEmpty(p.Name) && p.Name.Contains(query, StringComparison.OrdinalIgnoreCase)) ||
+                (!string.IsNullOrEmpty(p.ClientName) && p.ClientName.Contains(query, StringComparison.OrdinalIgnoreCase)) ||
+                (!string.IsNullOrEmpty(p.Description) && p.Description.Contains(query, StringComparison.OrdinalIgnoreCase))
+            );
         }
 
         var viewModel = new ProjectListViewModel
@@ -61,11 +66,11 @@ public class ProjectsController : Controller
             {
                 AvailableMembers = GetTestMember()
             }
-
         };
 
         return View(viewModel);
     }
+
 
 
 

@@ -74,6 +74,19 @@
     --navlink-background-color: transparent;
     --navlink-background-hover-color: var(--blue-accent-10);
     --navlink-background-active-color: var(--blue-accent-10);
+    --modal-background: var(--white-100);
+    --input-background: var(--white-100);
+    --card-background: var(--white-100);
+    --dropdown-background: var(--white-200);
+    --member-tag-background: var(--gray-200);
+    --error-background: #f8d7da;
+    --error-border: #f5c2c7;
+    --error-text: #dc3545;
+    --card-background: var(--white-100);
+    --dropdown-item-background: var(--white-200);
+    --tag-background: var(--gray-200);
+    --submit-background: #007bff;
+    --submit-background-hover: #0056b3;
 }
 
 [data-theme="dark"] {
@@ -87,6 +100,20 @@
     --navlink-background-color: transparent;
     --navlink-background-hover-color: var(--blue-accent-10);
     --navlink-background-active-color: var(--blue-accent-10);
+    --modal-background: var(--dark-300);
+    --input-background: var(--dark-200);
+    --card-background: var(--dark-200);
+    --dropdown-background: var(--dark-200);
+    --member-tag-background: var(--dark-400);
+    --error-background: #4c2b2b;
+    --error-border: #aa6666;
+    --error-text: #ffaaaa;
+    --card-background: var(--dark-300);
+    --dropdown-item-background: var(--dark-400);
+    --tag-background: var(--dark-400);
+    --submit-background: #2682D9;
+    --submit-background-hover: #1e6fc0;
+    --surface-color: var(--gray-800);
 }
 
 
@@ -664,9 +691,9 @@ form .field-validation-error {
     top: 50%;
     transform: translateY(-50%);
     font-size: 0.75rem;
-    color: #dc3545;
-    background-color: #f8d7da;
-    border: 1px solid #f5c2c7;
+    color: var(--error-text);
+    background-color: var(--error-background);
+    border: 1px solid var(--error-border);
     border-radius: 0.4rem;
     padding: 0.25rem 0.75rem;
     display: flex;
@@ -821,8 +848,8 @@ form .field-validation-error {
         }
 
         .custom-dropdown-menu li a:hover {
-            background-color: var(--white-200);
             border-radius: 10px;
+            background-color: var(--navlink-background-hover-color);
         }
 
     .custom-dropdown-menu li button {
@@ -842,7 +869,7 @@ form .field-validation-error {
     }
 
         .custom-dropdown-menu li button:hover {
-            background-color: var(--white-200);
+            background-color: var(--dropdown-item-background);
             border-radius: 10px;
         }
 
@@ -867,6 +894,7 @@ form .field-validation-error {
     align-items: flex-start;
     justify-content: space-between;
     padding-bottom: 1rem;
+    color: var(--text-color);
 }
 
 
@@ -894,7 +922,7 @@ form .field-validation-error {
 }
 
 .card-company {
-    color: var(--gray-800);
+    color: var(--gray-600);
     margin: 0;
 }
 
@@ -919,7 +947,7 @@ form .field-validation-error {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
-    color: var(--dark-400);
+    color: var(--text-color);
     margin: 1rem 0;
     font-size: 0.95rem;
     text-align: left;
@@ -967,7 +995,7 @@ form .field-validation-error {
 .notification-container {
     min-width: 360px;
     padding: 16px;
-    background: var(--white-100);
+    background: var(--modal-background);
     border-radius: 12px;
 }
 
@@ -1047,8 +1075,8 @@ form .field-validation-error {
         color: var(--dark-100);
     }
 
-.gray-background {
-    background-color: var(--white-200);
+[data-theme="dark"] .gray-background {
+    background-color: var(--dark-400);
     font-weight: var(--font-semibold);
     border-radius: 10px;
 }
@@ -1076,7 +1104,7 @@ form .field-validation-error {
 .modal-container {
     font-family: var(--font-standard);
     box-sizing: border-box;
-    background: white;
+    background-color: var(--surface-color);
     width: 500px;
     border-radius: 12px;
     padding: 24px;
@@ -1244,7 +1272,7 @@ form .field-validation-error {
     font-size: 16px;
     font-family: inherit;
     color: var(--text-color);
-    background: var(--white-100);
+    background: var(--input-background);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     cursor: pointer;
@@ -1283,7 +1311,7 @@ form .field-validation-error {
 .modal-member {
     display: flex;
     align-items: center;
-    background: var(--gray-200);
+    background: var(--member-tag-background);
     border-radius: 8px;
     padding: 4px 8px;
     font-size: 14px;
@@ -1327,7 +1355,7 @@ form .field-validation-error {
 
 .modal-submit {
     width: 100%;
-    background: #007bff;
+    background: var(--submit-background);
     color: white;
     border: none;
     padding: 12px;
@@ -1339,7 +1367,7 @@ form .field-validation-error {
 }
 
     .modal-submit:hover {
-        background: #0056b3;
+        background: var(--submit-background-hover);
     }
 
 .remove-user-btn {
